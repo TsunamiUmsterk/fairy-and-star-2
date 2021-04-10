@@ -43,30 +43,26 @@ function setup() {
 function draw() {
   background(bgImg);
 
-drawSprites();
-keyPressed(); 
-  
+  star.x = starBody.position.x
+  star.y = starBody.position.y
+
+  if(starBody.position.y > 470 && fairy.isTouching(star)){
+	  Matter.Body.setStatic(starBody, true)
+  }
+
+  drawSprites();
+
 }
 
 function keyPressed() {
 	//write code here
-
-	fairy.x = fairy.position.x
-	fairy.y = fairy.position.y
-
-	if(keyDown(right)) { 
-	fairy.x = fairy.x - 4;
+if(keyCode === LEFT_ARROW){
+	fairy.x = fairy.x - 15; 
 }
-
-if(keyDown(left)) { 
-	fairy.x = fairy.x + 4;
+if(keyCode === RIGHT_ARROW){
+	fairy.x = fairy.x + 15; 
 }
-
-if(keyDown(up)) { 
-	fairy.y = fairy.y - 4;
-}
-
-if(keyDown(down)) { 
-	fairy.y = fairy.y + 4;
+if(keyCode === DOWN_ARROW){
+	Matter.Body.setStatic(starBody, false)
 }
 }
